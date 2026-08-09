@@ -43,7 +43,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
         with:
-          static_site_generator: astro
+          base_path: /template-astro-vp/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
