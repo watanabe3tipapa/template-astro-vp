@@ -1,0 +1,17 @@
+{
+  "name": "my-hybrid-docs",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@astrojs/vue": "^4.0.0",
+    "typescript": "^5.5.0"
+  }
+}
