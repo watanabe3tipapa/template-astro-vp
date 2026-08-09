@@ -1,12 +1,12 @@
 <template>
   <nav class="vp-nav">
     <div class="vp-nav-inner">
-      <a class="vp-nav-logo" href="/">{{ logo }}</a>
+      <a class="vp-nav-logo" :href="base + '/'">{{ logo }}</a>
       <div class="vp-nav-links">
         <a
           v-for="item in items"
           :key="item.text"
-          :href="item.link"
+          :href="base + item.link"
           class="vp-nav-link"
         >{{ item.text }}</a>
       </div>
@@ -15,6 +15,8 @@
 </template>
 
 <script setup lang="ts">
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '')
+
 defineProps<{
   logo?: string
   items: { text: string; link: string }[]

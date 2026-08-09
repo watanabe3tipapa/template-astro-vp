@@ -3,14 +3,16 @@
     <ul class="vp-sidebar-list">
       <li v-for="item in items" :key="item.text">
         <a
-          :href="item.link"
+          v-if="item.link"
+          :href="base + item.link"
           class="vp-sidebar-link"
           :class="{ active: isActive(item.link) }"
         >{{ item.text }}</a>
+        <span v-else class="vp-sidebar-heading">{{ item.text }}</span>
         <ul v-if="item.children" class="vp-sidebar-sublist">
           <li v-for="child in item.children" :key="child.text">
             <a
-              :href="child.link"
+              :href="base + child.link"
               class="vp-sidebar-link"
               :class="{ active: isActive(child.link) }"
             >{{ child.text }}</a>
@@ -22,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '')
+
 interface SidebarItem {
   text: string
   link?: string
@@ -64,6 +68,14 @@ const isActive = (link?: string): boolean => {
   font-size: 0.875rem;
   border-radius: 4px;
   transition: background 0.15s, color 0.15s;
+}
+.vp-sidebar-heading {
+  display: block;
+  padding: 0.5rem 0.5rem 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.02em;
 }
 .vp-sidebar-link:hover {
   color: #3b82f6;

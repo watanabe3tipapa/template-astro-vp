@@ -1,11 +1,11 @@
 <template>
   <nav v-if="prev || next" class="vp-prevnext">
-    <a v-if="prev" :href="prev.link" class="vp-pn-link prev">
+    <a v-if="prev" :href="base + prev.link" class="vp-pn-link prev">
       <span class="vp-pn-label">前へ</span>
       <span class="vp-pn-text">{{ prev.text }}</span>
     </a>
     <span v-else class="vp-pn-spacer" />
-    <a v-if="next" :href="next.link" class="vp-pn-link next">
+    <a v-if="next" :href="base + next.link" class="vp-pn-link next">
       <span class="vp-pn-label">次へ</span>
       <span class="vp-pn-text">{{ next.text }}</span>
     </a>
@@ -14,6 +14,8 @@
 
 <script setup lang="ts">
 import { type PropType } from 'vue'
+
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '')
 
 interface DocPage {
   text: string
